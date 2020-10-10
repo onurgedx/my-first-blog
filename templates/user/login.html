@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% load static%}
+
+{% block content %}
+
+
+<body class="bg-warning">
+    <div class="container">
+    <div class="row mt-3">
+        <div class="col-lg-8">
+            <img src="https://i.pinimg.com/originals/e3/ff/96/e3ff96bf9d25d9f6ce728bb8c982186a.jpg" alt="" class="rounded w-100">
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title font-italic m-0">Log in</h4>
+                </div>
+                <div class="card-body">
+                    <form action = "{% url 'login' %}" method ="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <!-- <label for="username">Username</label> -->
+                            <input type="text" name="username" class="form-control my-2" placeholder="Username" required>
+
+                            <input type="password" name="password" class="form-control my-2" placeholder="Password" required>
+                            <hr class="mb-0">
+                            <!--
+                                <div class="form-check">
+                                    <label for="" class="from-check-label">
+                                        <input type="checkbox"> <small> Save me.</a>
+                                    </label>
+                                </div>
+                                <hr class="mt-0">
+                            -->
+                            <button type="submit" class="btn btn-danger mb-0 btn-block">Sign in!</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

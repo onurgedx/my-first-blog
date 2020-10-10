@@ -29,12 +29,13 @@ SECRET_KEY = 'g9(c+zsvll9jt1wsegcymvfq-+1k5c9b)b$$ome^$5k_2-e&!u'
 
 #DEBUG = True #BURAYI ÇIKARITIYORUZ ÇÜNKÜ DEVELOPMENT VE PRODUCTİON KISIMLARINDA FARKLI BURASI
 
-ALLOWED_HOSTS = ['www.gamehiss.com','gamehiss.com']
-#ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['www.gamehiss.com','gamehiss.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'user',
     'games',
     'pages',
     'django.contrib.admin',
@@ -127,6 +128,7 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR,'static')  #BURASI DA DEGİŞKEN
 
 #STATICFILES_DIRS=[os.path.join(BASE_DIR,"static"), '/var/www/static/', ]   #BURASI DA DEGİŞKEN
-                        
-                       
-                                  
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {messages.ERROR: 'danger',}                        
+                   
+                                 
