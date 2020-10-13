@@ -29,15 +29,21 @@
                 <li {% if 'about' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                     <a href="{%url 'about' %}" class="nav-link">Hakkımda</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li {% if 'brainstrom' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                    <a href="{%url 'brainstrom' %}" class="nav-link">Beyin Fırtınası</a>
+                </li>
+                {% endif %}
+
 
             </ul>
             <hr>
             <!-- eger kullanıcı giriş yaptıysa bunu yap diyoruz -->
             {% if user.is_authenticated %} 
-            
+           
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="{%url 'logout' %}" class="nav-link">Çıkış</a>
+                    <a href="{%url 'logout' %}" class="nav-link">{{user.username}} Çıkış</a>
                 </li>
 
             </ul>
