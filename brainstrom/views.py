@@ -24,11 +24,13 @@ def index(request):
             
 
             description2 = request.POST['description']
-            
+           
             Brainstrom.objects.create(name = username2 ,description= description2)
+            
 
 
-        brainstrom = Brainstrom.objects.all()
+        brainstrom = Brainstrom.objects.filter( baglanti = None)
+        brainstrom =brainstrom[::-1] #bu şekilde en son yazan en son geliyor listeyi ters çevirdim işte 
         context = {
             'brainstrom' : brainstrom
         }
@@ -38,3 +40,40 @@ def index(request):
         messages.add_message(request , messages.WARNING ,'Bu sayfayı görebilmek için giriş yapmalısınız.Giriş yapabilmek için ise kayıt olmalısınız.')
 
         return render(request,'user/register.html')
+
+def rush(request,rush_id): #burda rush id yi belirttim pk yi rush_id ye eşitledm
+    
+#BURDA ÇOK PROBLEM YAŞADIM PROBLEMİM  BU YANIT YAZMAK İÇİN OLAN YERDE form action için bir id yollamıyor olmam
+   
+    if request.user.is_authenticated:
+       
+        
+        if request.method == 'POST':
+           
+          
+            username3 = request.user.username
+            description3 = request.POST['descriptionRush']
+            Brainstrom.objects.create(name = username3 ,description = description3 , baglanti = rush_id )
+        else: 
+            if  Brainstrom.objects.filter( baglanti = rush_id).exists() == False:
+                username3 = 'else'
+                description3 = 'else'
+                Brainstrom.objects.create(name = username3 ,description = description3 , baglanti = rush_id )
+        brainstrom = get_object_or_404(Brainstrom , pk = rush_id)
+        
+        rush = Brainstrom.objects.filter( baglanti = rush_id)
+        rush = rush[::-1]                
+
+        context = {'rush': rush,
+        'brainstrom' : brainstrom,
+                    } 
+        return render(request,'brainstrom/rush.html',context)
+       
+    else:
+        messages.add_message(request , messages.WARNING ,'Bu sayfayı görebilmek için giriş yapmalısınız.Giriş yapabilmek için ise kayıt olmalısınız.')
+
+        return render(request,'user/register.html')
+        
+
+def search(request):
+    return render(request,'brainstrom/search.html')

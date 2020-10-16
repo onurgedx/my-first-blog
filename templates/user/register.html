@@ -13,7 +13,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title font-italic m-0">Register</h4>
+                        <h4 class="card-title font-italic m-0">Kayıt</h4>
                     </div>
 
                     <div class="card-body">
@@ -21,22 +21,20 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <!-- <label for="username">Username</label> -->
-                                <input type="text" name="username" class="form-control my-2" placeholder="Username" required>
+                                <input type="text" name="username" class="form-control my-2" placeholder="Kullanıcı adı" required>
 
                                 <input type="email" name="email" class="form-control my-2" placeholder="E-mail" required>
 
                                 <input type="password" name="password" class="form-control my-2"
-                                    placeholder="New Password" required>
+                                    placeholder="Yeni şifre" required>
                                 <hr class="mb-0">
                                 <div class="form-check">
                                     <label for="" class="from-check-label">
-                                        <input type="checkbox"><a href="#"> <small> I agree to the Terms, Data Policy
-                                                and
-                                                Cookie Policy.</small></a>
-                                    </label>
+                                        <input type="checkbox" required><a href="#"> <small>Sizi dava etmeyecegime yemin ederim.</small></a>
+                                    </label><!--kayıt olurken bu yeri doldurmak zorunda oldugunu required ile belirttim yoksa göndermiyor bilgileri-->
                                 </div>
                                 <hr class="mt-0">
-                                <button type="submit" class="btn btn-danger mb-0 btn-block">Sign Up!</button>
+                                <button type="submit" class="btn btn-danger mb-0 btn-block">Kayıt ol!</button>
                             </div>
 
                         </form>

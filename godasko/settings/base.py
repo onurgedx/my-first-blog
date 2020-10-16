@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'brainstrom',
+    'brainstrom.apps.BrainstromConfig',
     'user',
     'games',
     'pages',

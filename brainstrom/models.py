@@ -7,7 +7,7 @@ class Brainstrom(models.Model):
     description = models.TextField(verbose_name = "Açıklama")
     image = models.CharField(max_length = 25 , verbose_name="Görsel")
     created_date = models.DateTimeField(auto_now_add = True ,verbose_name = "Olay vakti")
-
+    baglanti=models.IntegerField(null =True,verbose_name = "bagli oldugu id")#burası yorum tarafı için#BURDA KALDIMMMMMMMMMMMMMMMMMM
     isPublished = models.BooleanField(default = True)
 
     def __str__(self):
