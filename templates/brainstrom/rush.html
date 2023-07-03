@@ -1,0 +1,85 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+
+<body style="background-color:rgb(246,241,134)">
+
+
+    <div class="container">
+        <div class="card my-3" style="background-color:rgb(169,237,104)">
+            <div class="card-header">
+                <font color="#8f563b">{{brainstrom.name}}</font>
+            </div>
+            <div class="card-body lead text-light">
+                <font color="#8f563b">
+                    {{brainstrom.description}}
+                </font>
+            </div>
+            <div class="card-footer py-1">
+                <div class="row my-0">
+                    <div class="col-md-6">
+                        <a href="#" class="mr-auto text-light">Rushla!</a>
+                        <!--     burda bs.id ile yorumun idsini de gönderiyoruz-->
+                    </div>
+                    <div class="col-md-6 text-muted text-right">
+                        <small class="">{{brainstrom.created_date}}</small>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <br><br>
+    <div class="container">
+        <form action="{% url 'rush' brainstrom.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group my-2 col-md-10 mx-auto">
+                <button
+                    class="btn btn-inline-success form-control bg-danger text-light text-center">{{user.username}}</button>
+
+                <textarea name="descriptionRush" id="messageRush" cols="10" rows="3" class="form-control"
+                    placeholder="Bir şeyler yaz" required></textarea>
+                <button type="submit" class="btn btn-outline-light my-2 bg-success text-light">Yayımla!</button>
+            </div>
+        </form>
+
+        {% if rush %}
+        {% for rs in rush %}
+        <div class="row">
+            <div class="col-10 ml-auto">
+                <div class="card mb-3">
+                    <div class="card-header">{{rs.name}}</div>
+                    <div class="card-body">{{rs.description}}</div>
+                    <div class="card-footer py-1">
+                        <div class="row my-0">
+                            <div class="col-md-6">
+                                <a href="#" class="mr-auto text-success">...</a>
+                                <!--burda bs.id ile yorumun idsini de gönderiyoruz {% url 'rush' rs.id %}-->
+                            </div>
+                            <div class="col-md-6 text-muted text-right">
+                                <small class="">{{rs.created_date}}</small>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</body>
+
+
+
+
+{% endblock %}

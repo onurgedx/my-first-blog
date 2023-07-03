@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% load static%}
+
+{% block content %}
+
+
+<body style="background-color:rgb(246,241,134)">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-lg-8">
+                <img src="{% static 'img/kayiticin.jpg' %}" alt="" class="rounded w-100">
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title font-italic m-0">Kayıt</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <form action="{% url 'register' %}" method = "POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <!-- <label for="username">Username</label> -->
+                                <input type="text" name="username" class="form-control my-2" placeholder="Kullanıcı adı" required>
+
+                                <input type="email" name="email" class="form-control my-2" placeholder="E-mail" required>
+
+                                <input type="password" name="password" class="form-control my-2"
+                                    placeholder="Yeni şifre" required>
+                                <hr class="mb-0">
+                                <div class="form-check">
+                                    <label for="" class="from-check-label">
+                                        <input type="checkbox" required><a href="#"> <small>Sizi dava etmeyecegime yemin ederim.</small></a>
+                                    </label><!--kayıt olurken bu yeri doldurmak zorunda oldugunu required ile belirttim yoksa göndermiyor bilgileri-->
+                                </div>
+                                <hr class="mt-0"><!-- şu an disabled ile butonu pasif yaptım sürekli kayıt oluyorlar diye-->
+                                <button type="submit" class="btn btn-danger mb-0 btn-block" >Kayıt ol!</button><!--disabled i kaldırdım şimdilik -->
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endblock %}

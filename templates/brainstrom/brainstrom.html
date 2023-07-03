@@ -1,0 +1,47 @@
+{% extends 'layout.html'%}
+{% load static %}
+
+{% block content %}
+<body style="background-color:rgb(246,241,134)">
+    
+
+    <div class="container">
+        <form action="{% url 'brainstrom' %}" method = "POST">
+            {% csrf_token %}
+            <div class="form-group my-2 col-md-10 mx-auto">
+                <button class="btn btn-inline-success form-control bg-danger text-light text-center">{{user.username}}</button>
+                
+                <textarea name="description" id="message" cols="10" rows="3" class="form-control" placeholder="Bir şeyler yaz" required></textarea>
+                <button type="submit" class="btn btn-outline-light my-2 bg-success text-light">Yayımla!</button>
+            </div>
+        </form>
+        <br>
+        <hr> 
+        <br>
+
+        {% if brainstrom %}
+            {% for bs in brainstrom %}
+                <div class="card mb-3">
+                    <div class="card-header">{{bs.name}}</div>
+                    <div class="card-body">{{bs.description}}</div>
+                    <div class="card-footer py-1">
+                        <div class="row my-0">
+                            <div class="col-md-6">
+                                <a href="{% url 'rush' bs.id %}" class="mr-auto text-success">Rushla!</a> <!--burda bs.id ile yorumun idsini de gönderiyoruz-->
+                            </div>
+                            <div class="col-md-6 text-muted text-right">
+                                <small class= "">{{bs.created_date}}</small>
+                            </div>    
+                            
+
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+    </div>
+</body>
+{% endblock %}
